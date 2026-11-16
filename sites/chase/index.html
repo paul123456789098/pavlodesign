@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Causa Prima — End the chase | Agent-to-agent network for finance teams</title>
+<meta name="description" content="Causa Prima is the agent-to-agent network for finance teams.">
+<meta name="theme-color" content="#000000">
+<link rel="preload" href="assets/img/plate.jpg" as="image">
+<link rel="preload" href="media/balL.mp4" as="fetch" crossorigin>
+<link rel="preload" href="media/flight.mp4" as="fetch" crossorigin>
+<style>
+@font-face{font-family:Culture;font-weight:300;font-display:block;src:url(assets/fonts/culture-300.woff2) format("woff2")}
+@font-face{font-family:Culture;font-weight:400;font-display:block;src:url(assets/fonts/culture-400.woff2) format("woff2")}
+@font-face{font-family:Culture;font-weight:500;font-display:block;src:url(assets/fonts/culture-500.woff2) format("woff2")}
+@font-face{font-family:Culture;font-weight:600;font-display:block;src:url(assets/fonts/culture-600.woff2) format("woff2")}
+</style>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<a class="announce" href="https://fortune.com/2026/10/13/startup-causa-prima-20-million-billing-disputes-ai-agents/" target="_blank" rel="noopener">
+  <span class="announce__track" aria-hidden="true">
+    <span>We raised $20 million funding</span><i></i><span>We raised $20 million funding</span><i></i><span>We raised $20 million funding</span><i></i><span>We raised $20 million funding</span><i></i><span>We raised $20 million funding</span><i></i><span>We raised $20 million funding</span><i></i><span>We raised $20 million funding</span><i></i><span>We raised $20 million funding</span><i></i>
+  </span>
+  <span class="sr">We raised $20 million funding (opens in a new tab)</span>
+</a>
+
+<header class="nav" id="nav">
+  <nav class="nav__side">
+    <a href="https://causaprima.com/about">About</a>
+    <a href="#network">Product</a>
+  </nav>
+  <a class="nav__logo" href="#top" aria-label="Causa Prima, home"><svg viewBox="0 0 994 121" fill="currentColor" class="logo" aria-hidden="true" focusable="false"><path d="M745.476 35.002H727.573C714.098 35.002 706.011 41.6403 706.011 56.5821V119.191H724.135V58.991C724.135 53.4073 727.132 50.9984 732.674 50.9984H745.487H757.915V119.191H776.04V35.002H745.487H745.476Z"></path><path d="M975.891 35.0017V45.1146C970.051 38.0211 961.215 33.3477 948.787 33.3477C924.228 33.3477 907.305 52.6632 907.305 77.2518C907.305 101.84 924.228 121 948.787 121C961.215 121 970.051 116.471 975.891 109.078V119.191H993.563V35.0017H975.891ZM950.726 104.704C936.502 104.704 925.573 93.6922 925.573 77.2407C925.573 60.7891 936.502 49.6327 950.726 49.6327C964.201 49.6327 975.428 60.8002 975.428 77.2407C975.428 93.6811 964.047 104.704 950.726 104.704Z"></path><path d="M871.74 33.1921C862.154 33.1921 852.723 37.5659 847.93 45.1145C843.292 37.4216 835.205 33.1921 824.87 33.1921C815.285 33.1921 808.101 37.7213 804.509 43.3051V35.0016H786.385V119.191H804.509V66.9833C804.509 55.0609 810.944 48.578 819.934 48.578C828.925 48.578 835.062 55.5161 835.062 66.5282V119.18H853.186V66.9722C853.186 55.0498 859.62 48.5669 868.611 48.5669C877.601 48.5669 883.738 55.505 883.738 66.5171V119.169H901.862V65.6068C901.862 45.0923 890.635 33.1699 871.762 33.1699L871.74 33.1921Z"></path><path d="M664.11 12.6777H627.421V119.191H645.843V84.0344H664.11C686.267 84.0344 701.394 68.3488 701.394 48.4338C701.394 28.5187 686.124 12.6777 664.11 12.6777ZM660.518 68.1934H645.843V28.5187H660.364C673.244 28.5187 681.926 35.6122 681.926 48.4338C681.926 61.2553 673.387 68.1934 660.507 68.1934H660.518Z"></path><path d="M578.105 45.1146C572.266 38.0211 563.429 33.3477 551.001 33.3477C526.443 33.3477 509.52 52.6632 509.52 77.2518C509.52 101.84 526.443 121 551.001 121C563.429 121 572.266 116.471 578.105 109.078V119.191H595.778V35.0017H578.105V45.1146ZM552.952 104.704C538.728 104.704 527.798 93.6922 527.798 77.2407C527.798 60.7891 538.728 49.6327 552.952 49.6327C566.426 49.6327 577.664 60.8002 577.664 77.2407C577.664 93.6811 566.283 104.704 552.952 104.704Z"></path><path d="M486.614 70.458L476.433 67.4386C469.25 65.3294 466.396 61.8548 466.396 56.8816C466.396 51.4533 471.035 47.3792 477.932 47.3792C484.829 47.3792 489.908 51.6087 490.811 57.9362H505.785C503.989 39.0757 489.467 33.3477 477.789 33.3477C461.769 33.3477 449.341 43.7603 449.341 58.5467C449.341 70.7688 456.678 79.5164 469.558 83.2907L480.19 86.4544C487.826 88.5636 490.228 92.6377 490.228 97.4666C490.228 103.195 485.435 107.124 478.097 107.124C470.759 107.124 464.766 103.35 464.016 95.6571H448.294C448.889 114.973 464.765 121 477.943 121C496.21 121 507.14 109.988 507.14 95.6571C507.14 84.0344 500.849 74.5321 486.625 70.458H486.614Z"></path><path d="M423.273 86.599C423.273 98.5214 416.684 105.604 407.099 105.604C397.513 105.604 391.079 98.2106 391.079 87.0431V35.002H372.955V88.5639C372.955 109.078 384.182 121.001 402.152 121.001C411.44 121.001 419.527 116.472 423.262 110.744V119.191H441.386V35.002H423.262V86.599H423.273Z"></path><path d="M346.17 45.1146C340.331 38.0211 331.494 33.3477 319.066 33.3477C294.508 33.3477 277.584 52.6632 277.584 77.2518C277.584 101.84 294.508 121 319.066 121C331.494 121 340.331 116.471 346.17 109.078V119.191H363.843V35.0017H346.17V45.1146ZM321.006 104.704C306.782 104.704 295.852 93.6922 295.852 77.2407C295.852 60.7891 306.782 49.6327 321.006 49.6327C334.48 49.6327 345.718 60.8002 345.718 77.2407C345.718 93.6811 334.337 104.704 321.006 104.704Z"></path><path d="M226.76 28.3636C239.188 28.3636 251.318 36.0565 255.362 47.3683H274.533C269.74 25.6438 250.128 10.8574 226.165 10.8574C195.458 10.8685 172.552 34.4025 172.552 65.9291C172.552 97.4557 195.458 121.001 226.165 121.001C249.677 121.001 269.145 106.669 274.235 85.8441H254.767C250.426 96.4011 238.747 103.495 226.76 103.495C207.148 103.495 191.866 87.9533 191.866 65.9291C191.866 43.9049 207.137 28.3636 226.76 28.3636Z"></path><path d="M776.877 0H755.943V21.0917H776.877V0Z"></path><path class="fill-gold" d="M85.3301 83.2949H73.3978H61.4714L25.6455 119H73.3978H121.15L85.3301 83.2949Z"></path><g class="beam" style=""><path class="fill-orange" d="M146.608 72.9473H0V83.4385H146.608V72.9473Z"></path><path class="mark-disc fill-sky" d="M99.0307 10.6486C113.203 24.8468 113.203 47.8634 99.0307 62.0616C84.8586 76.2598 61.8842 76.2598 47.7121 62.0616C33.54 47.8634 33.54 24.8468 47.7121 10.6486C61.8842 -3.54954 84.8586 -3.54954 99.0307 10.6486ZM73.7699 16.0749L53.3146 36.5679L73.7699 57.0608L94.2252 36.5679L73.7699 16.0749Z"></path></g></svg></a>
+  <nav class="nav__side nav__side--r">
+    <a href="https://causaprima.com/contact">Contact</a>
+    <a href="https://shop.causaprima.ai/" target="_blank" rel="noopener">Careers</a>
+    <a class="btn btn--sm btn--orange" href="https://causaprima.com/contact">Book a demo</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero__stage">
+    <div class="hero__media" id="heroMedia" aria-hidden="true">
+      <img class="hero__plate" id="plate" alt="">
+      <video class="hero__bal" id="balL" muted playsinline preload="auto"></video>
+      <video class="hero__bal" id="balR" muted playsinline preload="auto"></video>
+    </div>
+    <video class="hero__film" id="flightFilm" muted playsinline preload="auto" aria-hidden="true"></video>
+    <div class="hero__copy" id="heroCopy">
+      <h1 class="h1" data-split>Stop managing your invoices,<br> start controlling your cash.</h1>
+      <p class="hero__sub">The Agent-to-Agent Platform for Enterprise Finance.</p>
+      <div class="hero__ctas">
+        <a class="btn btn--orange" href="https://causaprima.com/contact">Book a demo</a>
+        <a class="btn btn--ghost" href="https://causaprima.com/about#film">Watch video</a>
+      </div>
+    </div>
+
+    <div class="beam-label beam-label--l" id="lblL"><b>Your agent</b><span id="lblLv">Your target 3%</span></div>
+    <div class="beam-label beam-label--r" id="lblR"><b>Acme Corp.’s agent</b><span id="lblRv">Acme offers 0%</span></div>
+    <div class="deal-chip" id="dealChip"><span id="dealTxt">Deal at 2%</span></div>
+    <button class="drag-hint" id="dragHint" type="button" aria-label="Drag the sphere">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1V4.5a1.5 1.5 0 0 1 3 0V11m0-.5V6.5a1.5 1.5 0 0 1 3 0V14c0 4-2.5 7-6.5 7-2.6 0-4.1-1.2-5.6-3.4L3.6 14.2a1.5 1.5 0 0 1 2.5-1.7L9 15V8.5a1.5 1.5 0 0 0-3 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Drag</span>
+    </button>
+
+    <article class="inv" id="inv" aria-label="Invoice-001">
+      <header class="inv__head">
+        <div><b>Acme Corp.</b><span>Invoice-001</span></div>
+        <div class="inv__status" id="invStatus"><span class="pill pill--wait">Your agent</span></div>
+      </header>
+      <dl class="inv__meta">
+        <div><dt>Bill to</dt><dd>Your Company</dd></div>
+        <div><dt>PO</dt><dd>#A2A-01 <em class="ok">✓</em></dd></div>
+        <div><dt>Issued</dt><dd>13 Oct</dd></div>
+        <div><dt>Due</dt><dd class="swap"><span class="s0">12 Nov</span><span class="s1">20 Oct, −2%</span><span class="s2">Paid 20 Oct</span></dd></div>
+      </dl>
+      <table class="inv__items">
+        <thead><tr><th>Item</th><th>Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Freight: Madrid to Munich</td><td>31.040 €</td></tr>
+          <tr><td>Warehousing</td><td>9.700 €</td></tr>
+          <tr><td>Handling</td><td>7.760 €</td></tr>
+        </tbody>
+      </table>
+      <footer class="inv__total">
+        <div class="inv__tl"><span class="swap"><span class="s0">Total due</span><span class="s1">Total due</span><span class="s2"><b>Paid</b></span></span><small class="swap"><span class="s0">Net 30</span><span class="s1">Net 30</span><span class="s2">Day 7 · No chase</span></small></div>
+        <div class="inv__sum"><s id="invOld">48.500 €</s><strong id="invNew">48.500 €</strong></div>
+      </footer>
+      <div class="inv__deal" id="invDeal">
+        <span class="pill pill--ok">Terms agreed</span>
+        <button class="btn btn--xs btn--ink" id="invApprove" type="button">Approve</button>
+        <span class="inv__save">Save 970 €</span>
+      </div>
+      <div class="inv__saved" id="invSaved">970 € saved</div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ BACKED ============ -->
+<section class="backed" aria-labelledby="backedH">
+  <h2 class="backed__h" id="backedH">Backed by the world’s best</h2>
+  <div class="backed__rail" aria-hidden="false">
+    <ul class="backed__track">
+      <li>Creandum</li><li>Base10 Partners</li><li>QED Investors</li><li>Borusan Ventures</li><li>K Fund</li>
+      <li aria-hidden="true">Creandum</li><li aria-hidden="true">Base10 Partners</li><li aria-hidden="true">QED Investors</li><li aria-hidden="true">Borusan Ventures</li><li aria-hidden="true">K Fund</li>
+      <li aria-hidden="true">Creandum</li><li aria-hidden="true">Base10 Partners</li><li aria-hidden="true">QED Investors</li><li aria-hidden="true">Borusan Ventures</li><li aria-hidden="true">K Fund</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ PLATFORM ============ -->
+<section class="plat" id="network" aria-labelledby="platH">
+  <div class="plat__pin">
+    <h2 class="h2 plat__h" id="platH" data-split>One platform for your entire<br> financial operations.</h2>
+    <div class="dash-wrap" id="dashWrap">
+      <div class="dash" id="dash">
+        <aside class="dash__side">
+          <div class="dash__mark"><svg viewBox="0 0 147 121" fill="currentColor" class="logo" aria-hidden="true" focusable="false"><path class="fill-gold" d="M85.3301 83.2949H73.3978H61.4714L25.6455 119H73.3978H121.15L85.3301 83.2949Z"></path><g class="beam" style=""><path class="fill-orange" d="M146.608 72.9473H0V83.4385H146.608V72.9473Z"></path><path class="fill-sky" d="M99.0307 10.6486C113.203 24.8468 113.203 47.8634 99.0307 62.0616C84.8586 76.2598 61.8842 76.2598 47.7121 62.0616C33.54 47.8634 33.54 24.8468 47.7121 10.6486C61.8842 -3.54954 84.8586 -3.54954 99.0307 10.6486ZM73.7699 16.0749L53.3146 36.5679L73.7699 57.0608L94.2252 36.5679L73.7699 16.0749Z"></path></g></svg></div>
+          <ul>
+            <li class="on">Today</li><li>Cash</li><li>Network</li><li>Knowledge</li>
+          </ul>
+          <span class="dash__me">IZ</span>
+        </aside>
+        <div class="dash__main">
+          <ul class="dash__today" id="dashToday">
+            <li><b>Invoices</b> → 1.284 handled overnight</li>
+            <li><b>Apex</b> → INV-8822 matched · paid</li>
+            <li><b>TechFlow</b> → above your limit · sent to your CFO</li>
+          </ul>
+          <div class="chat" id="chat">
+            <div class="msg msg--in" data-step="0">
+              <small>Message from Acme’s agent</small>
+              <p>Acme’s agent agreed 2% off if we pay today. That saves you 970 €.</p>
+              <div class="msg__tags"><span class="tag">Early payment</span><span class="tag tag--warn" id="tagNeeds">Needs you</span><span class="tag tag--ok" id="tagPaid">Paid</span></div>
+            </div>
+            <div class="msg msg--ai" data-step="1">
+              <p>Approve and I’ll pay Acme 47.530 € today.</p>
+              <div class="mini-inv">
+                <div class="mini-inv__top"><b>Acme Corp.</b><span>Invoice</span></div>
+                <div class="mini-inv__grid">
+                  <div><small>Bill to</small>Your Company<br>Leopoldstraße 12<br>80802 Munich</div>
+                  <div><small>Details</small>INV-001<br>PO #A2A-01<br>Issued 13 Oct<br>Due 12 Nov</div>
+                </div>
+                <div class="mini-inv__rows"><span>Description</span><span>Amount</span><span>Freight: Madrid to Munich</span><span>31.040 €</span><span>Warehousing</span><span>9.700 €</span><span>Handling</span><span>7.760 €</span></div>
+              </div>
+              <div class="pay-row"><div><b>Acme Corp.</b><small>INV-001</small></div><div class="pay-row__amt"><strong>47.530 €</strong><s>48.500 €</s><small>2% off for paying on day 7</small></div></div>
+              <p class="why" id="why">2% for paying 23 days early is worth about 32% a year. The lines match PO #A2A-01, it is within your 50.000 € limit and cash stays above your buffer.</p>
+              <div class="msg__acts">
+                <button class="btn btn--xs btn--orange" id="dashApprove" type="button">Approve</button>
+                <button class="btn btn--xs btn--line" id="dashExplain" type="button" aria-expanded="true"><span class="ex-a">Explain</span><span class="ex-b">Hide</span></button>
+              </div>
+            </div>
+            <div class="msg msg--done" data-step="2">
+              <div class="pay-row pay-row--done"><div><b>Paid early · Acme Corp.</b><small>INV-001 · 2% off</small></div><div class="pay-row__amt"><s>48.500 €</s><strong>47.530 €</strong><small class="g">Saved 970 €</small></div></div>
+              <p>Done. Acme’s agent confirmed the 2% and the payment is on its way. You saved 970 €.</p>
+              <p>Next, I’m agreeing a payment date with Brightline’s agent. I’ll let you know when it’s settled.</p>
+              <button class="btn btn--xs btn--line" id="dashUndo" type="button">Undo</button>
+            </div>
+          </div>
+          <div class="ask">Ask Causa Prima anything</div>
+        </div>
+        <aside class="dash__right">
+          <div class="card">
+            <div class="card__h"><b>Payables agent</b></div>
+            <small>Discounts captured · 30 days</small><small class="r">17 suppliers</small>
+            <div class="big"><span id="capNum">21.400 €</span></div>
+            <small class="g" id="capDelta">+8.400 € vs prior 30 days · avg 2,3%</small>
+            <svg class="spark" viewBox="0 0 300 80" preserveAspectRatio="none" aria-hidden="true"><path class="spark__prior" d="M0 70 C40 66 60 60 90 58 S150 50 180 46 240 40 300 36"/><path class="spark__now" id="sparkNow" d="M0 70 C40 62 60 56 90 50 S150 38 180 34 240 22 300 10"/></svg>
+            <div class="spark__lbl"><span>Prior · 13.000 €</span><span class="g" id="sparkPlus">+970 €</span></div>
+            <div class="spark__lbl"><span>21 Sep</span><span>Today</span></div>
+          </div>
+          <div class="card">
+            <small>Handled overnight</small>
+            <div class="big">1.284</div>
+            <small>Peak 01:00 · 211</small>
+            <div class="bars" aria-hidden="true"><i style="--h:.3"></i><i style="--h:.55"></i><i style="--h:.8"></i><i style="--h:1"></i><i style="--h:.85"></i><i style="--h:.6"></i><i style="--h:.42"></i><i style="--h:.3"></i><i style="--h:.22"></i><i style="--h:.16"></i></div>
+            <div class="spark__lbl"><span>22:00</span><span>02:00</span><span>07:00</span></div>
+          </div>
+          <div class="card">
+            <small>Doing for you</small>
+            <ul class="doing">
+              <li><span><b>Acme Corp.</b><small>INV-001 · Paid early</small></span><span>47.530 €<em class="tag tag--ok">Paid</em></span></li>
+              <li><span><b>Apex Office Co.</b><small>INV-8822 · Due today</small></span><span>4.200 €<em class="tag tag--ok">Paid</em></span></li>
+              <li><span><b>Brightline Retail</b><small>Asking their agent for a date</small></span><span>42.800 €<em class="tag">In talks</em></span></li>
+            </ul>
+            <small class="esc">Escalated to CFO <span>1 · 87.500 €</span></small>
+            <ul class="doing"><li><span><b>TechFlow Systems</b><small>INV-8823 · Due 6 Nov</small></span><span>87.500 €<em class="tag tag--warn">Above your limit</em></span></li></ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VERBS ============ -->
+<section class="verbs" id="verbs">
+  <div class="verbs__pin">
+    <ol class="verbs__list" id="verbList">
+      <li class="on"><a href="#automate">We automate</a></li>
+      <li><a href="#negotiate">We negotiate</a></li>
+      <li><a href="#forecast">We forecast</a></li>
+      <li><a href="#steer">You steer</a></li>
+    </ol>
+
+    <div class="verbs__stage" id="verbStage">
+      <div class="verbs__view" id="verbView" aria-hidden="true"><video class="verbs__film" id="verbFilm" muted playsinline preload="auto"></video></div>
+
+      <!-- automate -->
+      <div class="w w--auto on" data-w="0">
+        <div class="w__h"><b>Doing for you</b><span class="live">Live</span></div>
+        <div class="auto__cols"><span>Matched</span><span>Cleared</span><span>Approved</span></div>
+        <div class="auto__belt" id="belt"></div>
+        <div class="auto__issue" id="autoIssue"><span class="bang">!</span><span class="auto__issue-a">Mismatch · resolving with their agent</span><span class="auto__issue-b">Resolved</span></div>
+        <div class="w__stats"><div><small>Handled today</small><b id="handled">1.286</b></div><div><small>Exceptions resolved</small><b id="exc">37</b></div><div><small>Needs you</small><b>0</b></div></div>
+      </div>
+
+      <!-- negotiate -->
+      <div class="w w--neg" data-w="1">
+        <div class="w__h"><b>Acme Corp.</b><span>INV-001</span></div>
+        <small>Early-payment discount</small>
+        <div class="neg__scale" id="negScale">
+          <span class="neg__end">0%</span>
+          <div class="neg__track" id="negTrack">
+            <i class="neg__fill" id="negFill"></i>
+            <span class="neg__mark neg__mark--target">Your target 3%</span>
+            <span class="neg__mark neg__mark--acme" id="negAcme">Acme offers 0%</span>
+            <button class="neg__knob" id="negKnob" type="button" role="slider" aria-label="You ask" aria-valuemin="0" aria-valuemax="3" aria-valuenow="2"><span id="negAsk">You ask 2%</span></button>
+          </div>
+          <span class="neg__end">3%</span>
+        </div>
+        <div class="neg__deal" id="negDeal"><span class="a">Acme agrees 2%</span><span class="b">Deal at 2%</span></div>
+        <dl class="neg__rows">
+          <div><dt>Pay by</dt><dd class="swap2"><span class="x0">12 Nov · Net 30</span><span class="x1">20 Oct · Day 7</span></dd></div>
+          <div><dt>Total</dt><dd class="swap2"><span class="x0">48.500 €</span><span class="x1">47.530 €</span></dd></div>
+        </dl>
+        <div class="neg__save"><small>You save</small><b>970 €</b></div>
+        <div class="bubbles">
+          <p class="bub bub--me"><small>Your agent</small>Day 7, for 2% off?</p>
+          <p class="bub bub--them"><small>Acme Corp.’s agent</small>Agreed. 2% off, paid on day 7.</p>
+        </div>
+      </div>
+
+      <!-- forecast -->
+      <div class="w w--fc" data-w="2">
+        <div class="w__h"><b>Cash forecast · 30d</b><span class="live">Agent-confirmed</span></div>
+        <svg class="fc__chart" viewBox="0 0 400 170" preserveAspectRatio="none" aria-hidden="true">
+          <path class="fc__band" id="fcBand" d="M0 100 L60 92 L120 86 L180 74 L240 66 L300 52 L360 44 L400 40 L400 76 L360 84 L300 88 L240 98 L180 104 L120 112 L60 108 L0 102 Z"/>
+          <path class="fc__line" id="fcLine" d="M0 101 L60 100 L120 99 L180 89 L240 82 L300 70 L360 64 L400 58"/>
+          <line class="fc__today" x1="0" y1="0" x2="0" y2="170"/>
+        </svg>
+        <div class="fc__today-l"><span>Today</span><b class="g">+42.800 €</b><b class="r">−4.200 €</b></div>
+        <dl class="fc__rows">
+          <div><dt>Expected in</dt><dd class="swap2"><span class="x0">139.600 €</span><span class="x1">182.400 €</span></dd></div>
+          <div><dt>Due out</dt><dd class="swap2"><span class="x0">91.460 €</span><span class="x1">95.660 €</span></dd></div>
+          <div><dt>Range</dt><dd class="swap3"><span class="y0">±38.000 €</span><span class="y1">±21.000 €</span><span class="y2">±9.000 €</span></dd></div>
+        </dl>
+        <div class="bubbles">
+          <p class="bub bub--them"><small>Brightline’s agent</small>Paying 42.800 € on Friday.</p>
+          <p class="bub bub--them"><small>Apex’s agent</small>Invoicing 4.200 € on 2 Nov.</p>
+        </div>
+      </div>
+
+      <!-- steer -->
+      <div class="w w--steer" data-w="3">
+        <div class="w__h"><b>Cash forecast · 30d</b></div>
+        <div class="steer__chart" id="steerChart">
+          <svg viewBox="0 0 400 150" preserveAspectRatio="none" aria-hidden="true"><path class="steer__line" d="M0 60 L50 66 L90 64 L130 92 L170 90 L210 98 L250 84 L300 80 L340 104 L400 96"/></svg>
+          <span class="steer__today">Today</span>
+          <span class="steer__evt" style="--x:30%">Acme</span>
+          <span class="steer__evt" style="--x:83%">TechFlow</span>
+          <div class="steer__floor" id="steerFloor" role="slider" tabindex="0" aria-label="Floor" aria-valuemin="80000" aria-valuemax="130000" aria-valuenow="130000">
+            <span class="steer__floor-l"><span class="f0">Floor 80.000 €</span><span class="f1">Floor 130.000 €</span></span>
+          </div>
+        </div>
+        <ul class="steer__rows">
+          <li><span>Acme · 2% off</span><span class="tag tag--ok">Pay early</span><small class="g">Saved 970 €</small></li>
+          <li><span>TechFlow · 1,5% off</span><span class="swap2 steer__tf"><span class="x0 tag tag--ok">Pay early</span><span class="x1 tag tag--warn">Hold to 6 Nov</span></span></li>
+        </ul>
+        <div class="bubbles">
+          <p class="bub bub--me"><small>You</small>Keep 130.000 € on hand.</p>
+          <p class="bub bub--them"><small>Your agent</small>Taking Acme’s 2%. TechFlow waits.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="verbs__copy" id="verbCopy">
+      <div class="vc on" id="automate"><h3>The busywork, handled.</h3><p>Invoices matched, disputes cleared, approvals done, on both sides.</p></div>
+      <div class="vc" id="negotiate"><h3>Cash on your terms.</h3><p>Agents settle invoice terms directly with the other company, capturing millions in early payment discounts.</p></div>
+      <div class="vc" id="forecast"><h3>Real-time visibility 24/7.</h3><p>See cash before it moves. Know what suppliers will invoice and when customers will pay.</p></div>
+      <div class="vc" id="steer"><h3>Your working capital, your call.</h3><p>Capture the discount when there’s room, hold it when the business needs it more.</p></div>
+    </div>
+    <div class="verbs__prog" aria-hidden="true"><i id="verbProg"></i></div>
+  </div>
+</section>
+
+<!-- ============ INTEGRATIONS ============ -->
+<section class="integ" aria-labelledby="integH">
+  <div class="integ__top">
+    <h2 class="h2" id="integH" data-split>Running on systems<br> you already trust</h2>
+    <div class="sap"><span class="sap__b">SAP</span><span>Certified</span></div>
+  </div>
+  <p class="works" aria-label="Works inside SAP, Oracle, Sage, DATEV, your inbox, Stripe, Odoo, Xero, QuickBooks, Lexware, MYOB, Revolut, bunq.">
+    <span class="works__a" aria-hidden="true">Works inside</span>
+    <span class="works__w" aria-hidden="true" id="worksW"><span>SAP.</span><span>Oracle.</span><span>Sage.</span><span>DATEV.</span><span>your inbox.</span><span>Stripe.</span><span>Odoo.</span><span>Xero.</span><span>QuickBooks.</span><span>Lexware.</span><span>MYOB.</span><span>Revolut.</span><span>bunq.</span></span>
+  </p>
+  <div class="integ__count">
+    <div class="integ__num"><span id="intNum">150</span>+</div>
+    <div class="integ__lbl"><b>150+ integrations</b><span>Integrations available from day one</span></div>
+  </div>
+  <div class="cats" id="cats">
+    <div class="cats__tabs" role="tablist">
+      <button role="tab" class="on" data-c="0">ERP and accounting<i>56</i></button>
+      <button role="tab" data-c="1">Invoicing and billing<i>15</i></button>
+      <button role="tab" data-c="2">Email and messaging<i>07</i></button>
+      <button role="tab" data-c="3">Files and documents<i>05</i></button>
+      <button role="tab" data-c="4">Banking and treasury<i>40</i></button>
+      <button role="tab" data-c="5">Payments<i>04</i></button>
+      <button role="tab" data-c="6">CRM<i>10</i></button>
+    </div>
+    <div class="cats__panes">
+      <ul class="on" data-c="0"><li>SAP</li><li>Microsoft Dynamics 365 Business Central</li><li>Oracle</li><li>Workday</li><li>Sage</li><li>Odoo</li><li>Exact</li><li>Acumatica</li><li>MYOB</li><li>QuickBooks</li><li>Xero</li><li>DATEV</li><li>Lexware Office</li><li>sevDesk</li><li>AFAS Software</li><li>Twinfield</li><li>Yuki</li><li>SnelStart</li><li>Moneybird</li><li>e-Boekhouden.nl</li><li>Pennylane</li><li>Cegid Loop</li><li>Fulll</li><li>Inqom</li><li>MyUnisoft</li><li>Tiime</li><li>ACD</li><li>InExWeb (In Extenso)</li><li>Horus</li><li>Octopus</li><li>Winbooks</li><li>Minox</li><li>banqUP</li><li>a3ERP</li><li>Contasol</li><li>Holded</li><li>Visma</li><li>Dinero</li><li>Fiken</li><li>Tripletex</li><li>Fortnox</li><li>Procountor</li><li>FreeAgent</li><li>Access Financials</li><li>Clear Books</li><li>KashFlow</li><li>Zoho Books</li><li>Wave</li><li>Rillet</li><li>DualEntry</li><li>Digits</li><li>Campfire</li><li>Alegra</li><li>Wafeq</li><li>Byll</li><li>Continia</li></ul>
+      <ul data-c="1"><li>FreshBooks</li><li>Chargebee</li><li>Hyperline</li><li>Sellsy</li><li>Axonaut</li><li>Billit</li><li>Evoliz</li><li>Factomos</li><li>Fatture in Cloud</li><li>Vosfactures</li><li>Dolibarr</li><li>EBP Gestion Commerciale</li><li>BoondManager</li><li>Harvest</li><li>Invopop</li></ul>
+      <ul data-c="2"><li>Gmail</li><li>Outlook</li><li>Resend</li><li>Slack</li><li>Microsoft Teams</li><li>Twilio</li><li>Bird (MessageBird)</li></ul>
+      <ul data-c="3"><li>Google Drive</li><li>SharePoint</li><li>OneDrive</li><li>Box</li><li>Dropbox</li></ul>
+      <ul data-c="4"><li>Plaid</li><li>Tink</li><li>Ponto</li><li>Mercury</li><li>Qonto</li><li>Revolut Business</li><li>JPMorgan Chase</li><li>Bank of America</li><li>Wells Fargo</li><li>Citi</li><li>U.S. Bank</li><li>PNC</li><li>Capital One</li><li>Santander</li><li>BBVA</li><li>CaixaBank</li><li>Banco Sabadell</li><li>Bankinter</li><li>BNP Paribas</li><li>Société Générale</li><li>Crédit Agricole</li><li>Crédit Mutuel</li><li>Deutsche Bank</li><li>Commerzbank</li><li>Sparkassen</li><li>Volksbanken Raiffeisenbanken</li><li>ING</li><li>ABN AMRO</li><li>Rabobank</li><li>Intesa Sanpaolo</li><li>UniCredit</li><li>HSBC</li><li>Barclays</li><li>Lloyds Bank</li><li>NatWest</li><li>Nordea</li><li>Danske Bank</li><li>KBC</li><li>Belfius</li><li>bunq</li></ul>
+      <ul data-c="5"><li>Stripe</li><li>GoCardless</li><li>Airwallex</li><li>PayPal</li></ul>
+      <ul data-c="6"><li>Salesforce</li><li>HubSpot</li><li>Microsoft Dynamics 365 CRM</li><li>Zoho CRM</li><li>Pipedrive</li><li>Teamleader</li><li>Attio</li><li>Close</li><li>Copper</li><li>Freshsales</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROOF ============ -->
+<section class="proof" aria-label="Customers">
+  <p class="proof__k">Already trusted by 3,000+ accounts</p>
+  <blockquote class="proof__q">
+    <p data-split>“The agents close exceptions overnight that used to sit in inboxes for two weeks.”</p>
+    <cite>– Head of Shared Services at a steel producer in Europe</cite>
+  </blockquote>
+  <ul class="stats">
+    <li><b><span data-count="86">86</span>%</b><span>touchless (from 34%)</span><i class="meter"><i style="--a:.34;--b:.86"></i></i></li>
+    <li><b>€<span data-count="1.6" data-dec="1">1.6</span>M</b><span>in discounts</span></li>
+    <li><b class="cycle"><span class="c11">11</span> → <span class="c2">2</span></b><span>days cycle time</span></li>
+  </ul>
+</section>
+
+<!-- ============ MANIFESTO ============ -->
+<section class="mani" aria-labelledby="maniH">
+  <div class="mani__pin">
+    <h2 class="mani__h" id="maniH">Manifesto</h2>
+    <p class="mani__t" id="maniT">It’s 4:45 PM on a Friday. One company is chasing an approval. The other is chasing the payment. AI won’t make this simpler. It will multiply it. Tools for one side won’t end the chase. So we built agents for both.</p>
+    <p class="mani__t2" id="maniT2">Because in the end, it should be simple. You do the work. The money moves. No one chases anything.</p>
+    <p class="mani__t3" id="maniT3">We just made sure the second part actually works.</p>
+  </div>
+</section>
+
+<section class="film" aria-labelledby="filmH">
+  <h2 class="h2" id="filmH" data-split>End the chase.</h2>
+  <a class="film__card" href="https://causaprima.com/about#film" id="filmCard">
+    <img src="assets/img/poster.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+    <span class="film__play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg><span>Film · 0:44</span></span>
+    <span class="sr">Play the Causa Prima film, 0:44</span>
+  </a>
+</section>
+
+<!-- ============ FOUNDERS ============ -->
+<section class="founders" aria-labelledby="fdH">
+  <div class="founders__head">
+    <h2 class="h2" id="fdH">The founders</h2>
+    <p class="founders__intro">25 years of moving money between companies.</p>
+  </div>
+  <div class="founders__grid">
+    <div class="founders__photos" id="fdPhotos">
+      <img class="on" src="assets/img/f1.jpg" alt="Jonas Albrecht" width="1200" height="1440" loading="lazy">
+      <img src="assets/img/f2.jpg" alt="Felix Brandt" width="1200" height="1440" loading="lazy">
+      <img src="assets/img/f3.jpg" alt="Lukas Henning" width="1200" height="1440" loading="lazy">
+    </div>
+    <div class="founders__list" role="tablist" aria-label="Choose a founder">
+      <button class="fd on" role="tab" data-i="0"><span class="fd__n">Jonas Albrecht</span><span class="fd__r">Co-Founder &amp; CEO</span><span class="fd__b">Twenty years building payment products that move billions between buyers and suppliers.</span></button>
+      <button class="fd" role="tab" data-i="1"><span class="fd__n">Felix Brandt</span><span class="fd__r">Co-Founder &amp; COO</span><span class="fd__b">Scaled a digital-asset custodian to billions under custody. Advised Fortune 500 finance teams.</span></button>
+      <button class="fd" role="tab" data-i="2"><span class="fd__n">Lukas Henning</span><span class="fd__r">Co-Founder &amp; CTO</span><span class="fd__b">600+ security audits. Built the infrastructure enterprises trust with real money.</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRESS ============ -->
+<section class="press" aria-labelledby="pressH">
+  <h2 class="h2" id="pressH">Press</h2>
+  <ul class="press__list">
+    <li><a href="https://fortune.com/2026/10/13/startup-causa-prima-20-million-billing-disputes-ai-agents/" target="_blank" rel="noopener"><small>fortune.com</small><h3>Startup Causa Prima raises $20 million to tackle billing disputes with AI agents</h3><span class="arr" aria-hidden="true">↗</span></a></li>
+    <li><a href="https://forbes.es/ultima-hora/1043071/la-tecnologica-causa-prima-capta-18-millones-de-euros-en-una-nueva-ronda-y-sube-su-financiacion-a-27-millones/" target="_blank" rel="noopener"><small>forbes.es</small><h3>La tecnológica Causa Prima capta 18 millones de euros en una nueva ronda y sube su financiación a 27 millones</h3><span class="arr" aria-hidden="true">↗</span></a></li>
+    <li><a href="https://www.manager-magazin.de/unternehmen/tech/nach-mega-exit-an-sap-graebt-der-gruender-wieder-im-umfeld-a-b837f6f8-0782-4863-8334-f0a848f7db50" target="_blank" rel="noopener"><small>manager-magazin.de</small><h3>Causa Prima: Nach Mega-Exit an SAP gräbt der Gründer wieder im Umfeld</h3><span class="arr" aria-hidden="true">↗</span></a></li>
+  </ul>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq" aria-labelledby="faqH">
+  <div class="faq__head">
+    <h2 class="h2" id="faqH">FAQ</h2>
+    <p>Answers to common questions about Causa Prima.</p>
+  </div>
+  <div class="faq__list">
+    <details class="qa" open><summary>Is Causa Prima secure?<i aria-hidden="true"></i></summary>
+      <div class="qa__a"><p>Secure by design. Causa Prima is the easiest part of your security review.</p>
+        <ul class="badges"><li><b>SAP</b><span>certified</span></li><li><b>ISO 27001</b><span>ongoing</span></li><li><b>SOC 2 Type 2</b><span>ongoing</span></li><li><b>GDPR</b><span>compliant</span></li></ul></div></details>
+    <details class="qa"><summary>How is this different from the tools we already have?<i aria-hidden="true"></i></summary>
+      <div class="qa__a"><p>Your current tools only see your side of the transaction. But disputes, delays and missed discounts happen between companies. Causa Prima brings your suppliers and customers onto the same network, so agents on both sides see live data from each company and resolve issues directly.</p></div></details>
+    <details class="qa"><summary>Who’s the agent on the other side?<i aria-hidden="true"></i></summary>
+      <div class="qa__a"><p>If they’re already on the network, it’s your customer’s or supplier’s agent, running their rules, representing their side. If they’re not, our agent reaches out to them directly, by email, the same way a person on your team would today, so nothing changes on their end.</p></div></details>
+    <details class="qa"><summary>Does this replace what we already run?<i aria-hidden="true"></i></summary>
+      <div class="qa__a"><p>No, we sit on top of what you run: SAP-certified, wrapping existing tools rather than replacing them. Nobody re-learns their job and no system gets ripped out.</p></div></details>
+    <details class="qa"><summary>How do agents make decisions?<i aria-hidden="true"></i></summary>
+      <div class="qa__a"><p>It follows the rules you set, shows its reasoning, and flags anything it isn’t sure about instead of guessing. The system is secure by design, so every action is authorized, logged, and auditable. You decide what it does unsupervised.</p></div></details>
+  </div>
+</section>
+
+<!-- ============ FINAL ============ -->
+<section class="final" id="final" aria-labelledby="finalH">
+  <div class="final__copy">
+    <div class="final__bg" aria-hidden="true"><video id="duskFilm" muted playsinline preload="auto"></video></div>
+    <h2 class="h1 final__h" id="finalH" data-split>Ready to end<br> the chase?</h2>
+    <a class="btn btn--orange" href="https://causaprima.com/contact">Book a demo</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <a class="foot__logo" href="#top" aria-label="Causa Prima, home"><svg viewBox="0 0 994 121" fill="currentColor" class="logo" aria-hidden="true" focusable="false"><path d="M745.476 35.002H727.573C714.098 35.002 706.011 41.6403 706.011 56.5821V119.191H724.135V58.991C724.135 53.4073 727.132 50.9984 732.674 50.9984H745.487H757.915V119.191H776.04V35.002H745.487H745.476Z"></path><path d="M975.891 35.0017V45.1146C970.051 38.0211 961.215 33.3477 948.787 33.3477C924.228 33.3477 907.305 52.6632 907.305 77.2518C907.305 101.84 924.228 121 948.787 121C961.215 121 970.051 116.471 975.891 109.078V119.191H993.563V35.0017H975.891ZM950.726 104.704C936.502 104.704 925.573 93.6922 925.573 77.2407C925.573 60.7891 936.502 49.6327 950.726 49.6327C964.201 49.6327 975.428 60.8002 975.428 77.2407C975.428 93.6811 964.047 104.704 950.726 104.704Z"></path><path d="M871.74 33.1921C862.154 33.1921 852.723 37.5659 847.93 45.1145C843.292 37.4216 835.205 33.1921 824.87 33.1921C815.285 33.1921 808.101 37.7213 804.509 43.3051V35.0016H786.385V119.191H804.509V66.9833C804.509 55.0609 810.944 48.578 819.934 48.578C828.925 48.578 835.062 55.5161 835.062 66.5282V119.18H853.186V66.9722C853.186 55.0498 859.62 48.5669 868.611 48.5669C877.601 48.5669 883.738 55.505 883.738 66.5171V119.169H901.862V65.6068C901.862 45.0923 890.635 33.1699 871.762 33.1699L871.74 33.1921Z"></path><path d="M664.11 12.6777H627.421V119.191H645.843V84.0344H664.11C686.267 84.0344 701.394 68.3488 701.394 48.4338C701.394 28.5187 686.124 12.6777 664.11 12.6777ZM660.518 68.1934H645.843V28.5187H660.364C673.244 28.5187 681.926 35.6122 681.926 48.4338C681.926 61.2553 673.387 68.1934 660.507 68.1934H660.518Z"></path><path d="M578.105 45.1146C572.266 38.0211 563.429 33.3477 551.001 33.3477C526.443 33.3477 509.52 52.6632 509.52 77.2518C509.52 101.84 526.443 121 551.001 121C563.429 121 572.266 116.471 578.105 109.078V119.191H595.778V35.0017H578.105V45.1146ZM552.952 104.704C538.728 104.704 527.798 93.6922 527.798 77.2407C527.798 60.7891 538.728 49.6327 552.952 49.6327C566.426 49.6327 577.664 60.8002 577.664 77.2407C577.664 93.6811 566.283 104.704 552.952 104.704Z"></path><path d="M486.614 70.458L476.433 67.4386C469.25 65.3294 466.396 61.8548 466.396 56.8816C466.396 51.4533 471.035 47.3792 477.932 47.3792C484.829 47.3792 489.908 51.6087 490.811 57.9362H505.785C503.989 39.0757 489.467 33.3477 477.789 33.3477C461.769 33.3477 449.341 43.7603 449.341 58.5467C449.341 70.7688 456.678 79.5164 469.558 83.2907L480.19 86.4544C487.826 88.5636 490.228 92.6377 490.228 97.4666C490.228 103.195 485.435 107.124 478.097 107.124C470.759 107.124 464.766 103.35 464.016 95.6571H448.294C448.889 114.973 464.765 121 477.943 121C496.21 121 507.14 109.988 507.14 95.6571C507.14 84.0344 500.849 74.5321 486.625 70.458H486.614Z"></path><path d="M423.273 86.599C423.273 98.5214 416.684 105.604 407.099 105.604C397.513 105.604 391.079 98.2106 391.079 87.0431V35.002H372.955V88.5639C372.955 109.078 384.182 121.001 402.152 121.001C411.44 121.001 419.527 116.472 423.262 110.744V119.191H441.386V35.002H423.262V86.599H423.273Z"></path><path d="M346.17 45.1146C340.331 38.0211 331.494 33.3477 319.066 33.3477C294.508 33.3477 277.584 52.6632 277.584 77.2518C277.584 101.84 294.508 121 319.066 121C331.494 121 340.331 116.471 346.17 109.078V119.191H363.843V35.0017H346.17V45.1146ZM321.006 104.704C306.782 104.704 295.852 93.6922 295.852 77.2407C295.852 60.7891 306.782 49.6327 321.006 49.6327C334.48 49.6327 345.718 60.8002 345.718 77.2407C345.718 93.6811 334.337 104.704 321.006 104.704Z"></path><path d="M226.76 28.3636C239.188 28.3636 251.318 36.0565 255.362 47.3683H274.533C269.74 25.6438 250.128 10.8574 226.165 10.8574C195.458 10.8685 172.552 34.4025 172.552 65.9291C172.552 97.4557 195.458 121.001 226.165 121.001C249.677 121.001 269.145 106.669 274.235 85.8441H254.767C250.426 96.4011 238.747 103.495 226.76 103.495C207.148 103.495 191.866 87.9533 191.866 65.9291C191.866 43.9049 207.137 28.3636 226.76 28.3636Z"></path><path d="M776.877 0H755.943V21.0917H776.877V0Z"></path><path class="fill-gold" d="M85.3301 83.2949H73.3978H61.4714L25.6455 119H73.3978H121.15L85.3301 83.2949Z"></path><g class="beam" style=""><path class="fill-orange" d="M146.608 72.9473H0V83.4385H146.608V72.9473Z"></path><path class="mark-disc fill-sky" d="M99.0307 10.6486C113.203 24.8468 113.203 47.8634 99.0307 62.0616C84.8586 76.2598 61.8842 76.2598 47.7121 62.0616C33.54 47.8634 33.54 24.8468 47.7121 10.6486C61.8842 -3.54954 84.8586 -3.54954 99.0307 10.6486ZM73.7699 16.0749L53.3146 36.5679L73.7699 57.0608L94.2252 36.5679L73.7699 16.0749Z"></path></g></svg></a>
+  <ul>
+    <li><a href="https://shop.causaprima.ai/" target="_blank" rel="noopener">Careers</a></li>
+    <li><a href="https://causaprima.com/contact">Contact</a></li>
+    <li><a href="https://trust.causaprima.com/" target="_blank" rel="noopener">Trust</a></li>
+    <li><a href="https://causaprima.com/imprint">Imprint</a></li>
+    <li><a href="https://causaprima.com/privacy">Privacy</a></li>
+    <li><a href="https://causaprima.com/cookies">Cookies</a></li>
+  </ul>
+  <small>© 2026 Causa Prima, Inc.</small>
+</footer>
+
+<script>window.__A={"plate": "assets/img/plate.jpg", "balL": "media/balL.mp4", "balR": "media/balR.mp4", "flight": "media/flight.mp4", "walk": "media/walk.mp4", "dusk": "media/dusk.mp4"};</script>
+<script src="assets/app.js" defer></script>
+</body>
+</html>
