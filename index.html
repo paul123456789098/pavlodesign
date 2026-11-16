@@ -1728,7 +1728,7 @@ raf=requestAnimationFrame(loop);
  const drop=()=>{if(gl)for(let i=0;i<N;i++)for(const k of KS){const T=tex[i][k];if(T){gl.deleteTexture(T.s);gl.deleteTexture(T.b)}delete tex[i][k]}};
  /* ---- layout ---- */
  function size(){W=st.clientWidth;H=st.clientHeight;dpr=Math.min(devicePixelRatio||1,2);cv.width=W*dpr|0;cv.height=H*dpr|0;const mob=W<760;
-  const pad=parseFloat(getComputedStyle(st).getPropertyValue('--rpx'))||Math.max(18,Math.min(80,W*.05)),hb=top.getBoundingClientRect().bottom-st.getBoundingClientRect().top;
+  const pad=parseFloat(getComputedStyle(st).getPropertyValue('--rpx'))||Math.max(18,Math.min(80,W*.05)),sr=st.getBoundingClientRect(),ow=st.offsetWidth,hb=(top.getBoundingClientRect().bottom-sr.top)/(!ow||Math.abs(sr.width-ow)<1?1:sr.width/ow);
   if(mob){if(side.parentNode!==txt)txt.appendChild(side);side.style.cssText='';const g=8,cw=W-pad*2,ch=cw*9/16,hs=ch*.36,y=hb+30+Math.max(12,Math.min(26,H*.03));geo={mob,pad,g,cw,ch,cy:y+ch/2,hs,D1:cw*.94,D2:cw*.68};
    /* on phones the text starts right under the row of pictures, so a long name grows downwards and never climbs onto them */
    txt.style.cssText=`left:${pad}px;right:${pad}px;top:${y+ch+g+hs+12}px`;nm.style.fontSize='';arr.style.top=(y+ch+g+hs+6)+'px'}
@@ -1780,7 +1780,7 @@ raf=requestAnimationFrame(loop);
  const dend=e=>{if(!dg||e.pointerId!==dg.id)return;if(dg.on){S.drag=false;st.classList.remove('dragging');let i=Math.round(S.t);if(i===dg.t0&&Math.abs(S.t-dg.t0)>.1)i=dg.t0+(S.t>dg.t0?1:-1);S.go(i);dragged=performance.now()}dg=null};addEventListener('pointerup',dend);addEventListener('pointercancel',dend);
  {let acc=0,lk=0;st.addEventListener('wheel',e=>{if(Math.abs(e.deltaX)<=Math.abs(e.deltaY))return;e.preventDefault();const t=performance.now();if(t<lk)return;acc+=e.deltaX;if(Math.abs(acc)>50){S.go(Math.round(S.t)+(acc>0?1:-1));acc=0;lk=t+520}},{passive:false})}
  /* a click on a neighbour brings it to the centre; a click on the spread in the centre opens the project */
- cv.addEventListener('click',e=>{if(!geo||performance.now()-dragged<250)return;const b=cv.getBoundingClientRect(),x=e.clientX-b.left,y=e.clientY-b.top,g=geo;
+ cv.addEventListener('click',e=>{if(!geo||performance.now()-dragged<250)return;const b=cv.getBoundingClientRect(),ow=cv.offsetWidth,q=!ow||Math.abs(b.width-ow)<1?1:b.width/ow,x=(e.clientX-b.left)/q,y=(e.clientY-b.top)/q,g=geo;
   if(g.mob){if(x>W/2+g.cw/2)S.go(Math.round(S.t)+1);else if(x<W/2-g.cw/2)S.go(Math.round(S.t)-1);else if(y>g.cy-g.ch/2&&y<g.cy+g.ch/2+g.g+g.hs)open(Math.max(0,cur))}
   else if(x>g.x0+g.SW+g.gap*.4)S.go(Math.round(S.t)+1);else if(x<g.x0-g.gap*.4)S.go(Math.round(S.t)-1);else if(x>g.x0&&x<g.x0+g.SW&&y>g.cy-g.ch/2&&y<g.cy+g.ch/2)open(Math.max(0,cur))});
  fr.addEventListener('click',()=>{if(performance.now()-dragged<250)return;open(Math.max(0,cur))});
@@ -1814,15 +1814,17 @@ raf=requestAnimationFrame(loop);
  S.go=i=>{const y=S.top()+cl(i,0,steps)*stepPx(),L=LN();if(L&&!RM)L.scrollTo(y,{duration:.9,easing:t=>1-Math.pow(1-t,3)});else scrollTo({top:y,behavior:RM?'auto':'smooth'})};
  {let st=0;const on=()=>{S.read();clearTimeout(st);if(!S.snap||window.ovOpen)return;st=setTimeout(()=>{const r=run.getBoundingClientRect();if(r.top>4||r.bottom<innerHeight-4)return;const f=S.t-Math.round(S.t);if(Math.abs(f)>.015)S.go(Math.round(S.t))},170)};
   addEventListener('scroll',on,{passive:true});const L=LN();if(L)L.on('scroll',on)}
- let foc=-1,gl=null,U_={},W=0,H=0,sc=1,drawn=false,inited=false,fp=0,fv=0,tb=null,bx=null,tc=null,cx=null,curK=-1,geo=null;
+ let foc=-1,gl=null,U_={},W=0,H=0,sc=1,drawn=false,inited=false,fp=0,fv=0,tb=null,bx=null,tc=null,cx=null,curK=-1,pk=-1,geo=null;
  const rows=ROLES.map((r,i)=>{const row=h('button','rz-row');row.type='button';row.setAttribute('aria-label',r.t+', '+r.co);const hd=h('h3');row.append(h('span','y',yrs(r)),hd);list.appendChild(row);row.addEventListener('click',()=>S.go(i));return {row,hd,r}});
  /* lines are fixed at the heaviest weight, so a title never re-wraps while its weight changes; each line's place is kept for the flow layer */
  function lines(){rows.forEach(o=>{const hd=o.hd;hd.style.fontWeight=700;hd.textContent='';const ws=o.r.t.split(' ').map(w=>{const s=h('span',null,w+' ');s.style.cssText='display:inline;white-space:normal';hd.appendChild(s);return s});
    const ls=[];let top=null;ws.forEach(s=>{const t=s.offsetTop;if(top===null||Math.abs(t-top)>4){ls.push('');top=t}ls[ls.length-1]+=s.textContent});
    if(ls.length===2){const wd=ws.map(s=>s.getBoundingClientRect().width);let best=1,bd=1e9;for(let k=1;k<wd.length;k++){const a=wd.slice(0,k).reduce((x,y)=>x+y,0),b=wd.slice(k).reduce((x,y)=>x+y,0);if(Math.max(a,b)<bd){bd=Math.max(a,b);best=k}}const t=ws.map(s=>s.textContent);ls[0]=t.slice(0,best).join('');ls[1]=t.slice(best).join('')}
    hd.textContent='';o.fs=parseFloat(getComputedStyle(hd).fontSize);o.sp=ls.map(l=>{const sp=h('span',null,l.trim());hd.appendChild(sp);return sp});hd.style.fontWeight='';o._w=0});
-  /* measured only after every title has its final lines: the column is centred, so one title changing height moves all the others */
-  const sb=stick.getBoundingClientRect();rows.forEach(o=>{o.L=o.sp.map(sp=>{const pr=h('i');pr.style.cssText='display:inline-block;width:0;height:0;vertical-align:baseline';sp.appendChild(pr);const a=sp.getBoundingClientRect(),b=pr.getBoundingClientRect();pr.remove();return {t:sp.textContent,x:a.left-sb.left,y:b.bottom-sb.top}})});curK=-1}
+  /* measured only after every title has its final lines: the column is centred, so one title changing height moves all the others.
+     In the scene's own pixels: the depth between sections may have it a little smaller at that moment (a resize, a late font, the page finishing its load),
+     and the liquid is drawn inside the scene, so it lands on the letters either way */
+  const sb=stick.getBoundingClientRect(),ow=stick.offsetWidth,q=!ow||Math.abs(sb.width-ow)<1?1:sb.width/ow;rows.forEach(o=>{o.L=o.sp.map(sp=>{const pr=h('i');pr.style.cssText='display:inline-block;width:0;height:0;vertical-align:baseline';sp.appendChild(pr);const a=sp.getBoundingClientRect(),b=pr.getBoundingClientRect();pr.remove();return {t:sp.textContent,x:(a.left-sb.left)/q,y:(b.bottom-sb.top)/q}})});curK=-1}
  function setFocus(i){foc=i;const r=ROLES[i];fade(read,()=>{read.textContent='';const im=h('img');im.alt='';im.src=LG(r.lg);read.append(im,h('div','co',r.co),h('div','meta',r.meta),h('p',null,r.p))})}
  /* ---- the liquid. The weight a role loses when it gives up the focus is treated as a body of thick liquid that has the shape of its letters.
     It does not smear: every bit of it is in one place at a time. It lets go of the letters (the underside first, and in tongues along the line rather than all at once),
@@ -1885,7 +1887,7 @@ raf=requestAnimationFrame(loop);
    /* the blur of an unfocused role comes on only once the ink has left it and is gone before the ink settles, so nothing soft shows around the sharp letters of the liquid */
    const bl=Math.round((!liq?(1-e)*Math.min(1,d):i===k?ss(cl((m-.1)/.15)):i===k+1?1-ss(cl((m-.76)/.15)):1)*bm*4)/4,fc=e0>.5;
    if(o._f!==fc){o._f=fc;o.row.classList.toggle('foc',fc)}if(o._w!==w){o._w=w;o.hd.style.fontWeight=w}if(o._c!==c){o._c=c;o.row.style.color=`rgb(${c},${c},${c})`}if(o._b!==bl){o._b=bl;o.hd.style.filter=bl<.2?'none':`blur(${bl}px)`}});
-  if(!gl)return;let live=m>.001&&m<.999;if(live&&curK!==k){live=ink(k);curK=live?k:-1;if(live)dispatchEvent(new CustomEvent('pl:pour',{detail:{i:k}}))}
+  if(!gl)return;let live=m>.001&&m<.999;if(live&&curK!==k){live=ink(k);curK=live?k:-1;if(live&&pk!==k){pk=k;dispatchEvent(new CustomEvent('pl:pour',{detail:{i:k}}))}}
   if(!live){if(drawn){gl.disable(gl.SCISSOR_TEST);gl.viewport(0,0,cv.width,cv.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);drawn=false}return}
   gl.disable(gl.SCISSOR_TEST);gl.viewport(0,0,cv.width,cv.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);
   {const y0=geo.top,y1=geo.bot;gl.enable(gl.SCISSOR_TEST);gl.scissor(Math.floor(geo.x0*sc),Math.floor((H-y1)*sc),Math.ceil((geo.x1-geo.x0)*sc),Math.ceil((y1-y0)*sc))}
@@ -1893,11 +1895,15 @@ raf=requestAnimationFrame(loop);
   gl.drawArrays(gl.TRIANGLE_STRIP,0,4);drawn=true}
  /* ---- when it runs: only while the section is on screen ---- */
  const size=()=>{S.size();fit();lines();S.read()};
- size();fp=S.t;addEventListener('resize',()=>{size();fp=S.t;fv=0});(document.fonts&&document.fonts.ready||Promise.resolve()).then(()=>{lines()});addEventListener('load',()=>{size();fp=S.t;fv=0});
+ size();fp=S.t;addEventListener('resize',()=>{size();fp=S.t;fv=0});(document.fonts&&document.fonts.ready||Promise.resolve()).then(()=>{lines()});if(document.fonts&&document.fonts.addEventListener)document.fonts.addEventListener('loadingdone',()=>lines());addEventListener('load',()=>{size();fp=S.t;fv=0});
  let secVis=false;new IntersectionObserver(es=>{secVis=es[es.length-1].isIntersecting},{rootMargin:'50px 0px'}).observe(sec);
  let lt=0;(function loop(t){requestAnimationFrame(loop);if(!secVis||window.ovOpen){lt=0;return}const dt=Math.min(.05,lt?(t-lt)/1000:.016);lt=t;tick(t,dt)})(0);
  window.__rz={S,get fp(){return fp}};
 })();
+
+/* a role, a project dot or an arrow pressed with the mouse lets the focus go again, so a key pressed afterwards neither draws a ring round it nor presses it a second time;
+   pressed from the keyboard it keeps the focus */
+document.addEventListener('click',e=>{if(!e.detail)return;const b=e.target.closest&&e.target.closest('.rz-row,.rl-rail button,.rl-arr button');if(b)b.blur()});
 
 /* ===== BETWEEN SECTIONS — DEPTH. The page scrolls as it always does, nothing is held and nothing is covered.
    A section that leaves goes back into the dark: it falls a little behind the scroll, gets smaller and fades. The next one comes up out of the same depth
