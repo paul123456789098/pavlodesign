@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pavlo Lobodiuk</title>
+<script>if(/^#./.test(location.hash)){window.__H=location.hash;try{history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}}</script>
 <meta name="description" content="AI Generalist · Lead Brand Designer · Barcelona, Spain">
 <meta name="theme-color" content="#060607">
 <meta property="og:type" content="website">
@@ -328,7 +329,7 @@ main{position:relative;z-index:2;background:var(--bg)}
     <nav class="nav-links">
       <button class="snd" type="button" aria-pressed="false" aria-label="Sound"><span class="snd-b" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="ln">Sound</span></button>
       <a href="#work" data-scroll aria-label="Work"><span class="ln">Work</span></a>
-      <a href="#cv" data-scroll aria-label="Full résumés"><span class="ln">Full résumés</span></a>
+      <a href="#resume" data-scroll aria-label="Full résumés"><span class="ln">Full résumés</span></a>
       <a href="#contact" data-scroll class="btn" aria-label="Contact"><span class="ln">Contact</span></a>
     </nav>
   </div>
@@ -439,7 +440,7 @@ let lenis=null;
 if(window.Lenis){lenis=new Lenis({lerp:.09,smoothWheel:true});}
 function raf(t){lenis&&lenis.raf(t);requestAnimationFrame(raf)}requestAnimationFrame(raf);
 document.querySelectorAll('[data-scroll]').forEach(a=>a.addEventListener('click',e=>{
-  const id=a.getAttribute('href');const el=document.querySelector(id);if(!el)return;e.preventDefault();
+  const id=a.getAttribute('href');const el=document.querySelector(id==='#resume'?'#cv':id);if(!el)return;e.preventDefault();
   if(id==='#contact'){const y=document.documentElement.scrollHeight-innerHeight;lenis?lenis.scrollTo(y,{duration:1.8}):scrollTo({top:y,behavior:'smooth'});return}
   lenis?lenis.scrollTo(el,{offset:(id==='#top'||id==='#work')?0:-90,duration:1.6}):el.scrollIntoView({behavior:'smooth'});
 }));
@@ -932,6 +933,10 @@ if(gl2){
 
 /* ---------------- PROJECT OVERLAY ---------------- */
 /* a live site is put in its window only if it is really there (asked once per site); where the sites are not shipped next to the page, the still of its first screen stays */
+/* a frame changes its page without adding a step to the browser's history: Back has to close a project, not walk back through the sites the frames have shown.
+   Whether a frame holds a site is kept in data-on */
+window.frameOn=(f,u)=>{f.dataset.on=u;try{f.contentWindow.location.replace(new URL(u,location.href).href)}catch(e){f.src=u}};
+window.frameOff=f=>{if(!f||!f.dataset.on)return;delete f.dataset.on;try{f.contentWindow.location.replace('about:blank')}catch(e){f.removeAttribute('src')}};
 const SITEOK={},SITEK={};window.siteKnown=u=>/^https?:/.test(u)?true:SITEK[u];window.siteOk=u=>{if(/^https?:/.test(u))return Promise.resolve(true);if(window.__SOLO)return Promise.resolve(false);if(!(u in SITEOK)){const head=()=>fetch(u,{method:'HEAD',cache:'no-store'}).then(r=>{if(r.status===405||r.status===501)throw 0;return r.ok});
   /* a host that does not answer HEAD: ask for the page and drop it as soon as the answer starts */
   const peek=()=>{const ac=window.AbortController?new AbortController():null;return fetch(u,ac?{signal:ac.signal}:{}).then(r=>{const ok=r.ok;try{ac&&ac.abort()}catch(e){}return ok})};
@@ -940,7 +945,7 @@ const ov=document.getElementById('ov'),ovIn=document.getElementById('ovIn'),ovSh
 let ovIO=null,ovRO=null,ovBusy=0,ovT=0;
 function openProject(i,swap){const p=PROJECTS[i];window.ovOpen=1;dispatchEvent(new Event('pl:open'));
   /* the live site in the work tile stays until the sheet has covered it, then it is unloaded (no black tile flashing under the rising sheet) */
-  const killTiles=()=>{if(!ov.classList.contains('open'))return;document.querySelectorAll('.rl .rl-site[src]').forEach(f=>{f.removeAttribute('src');f.parentNode.classList.remove('on')})};
+  const killTiles=()=>{if(!ov.classList.contains('open'))return;document.querySelectorAll('.rl .rl-site[data-on]').forEach(f=>{frameOff(f);f.parentNode.classList.remove('on')})};
   clearTimeout(window.__ovKill);if(swap)killTiles();else window.__ovKill=setTimeout(killTiles,1200);const nx=PROJECTS[(i+1)%PROJECTS.length];
   ovIn.innerHTML=`<div class="ov-top"><div><p class="kicker ov-rv" style="--i:0">Concept</p><h2 class="ov-rv" style="margin-top:18px;--i:1">${p.name}</h2><p class="hl ov-rv" style="--i:2">${p.hl}</p></div>
    <div><p class="desc ov-rv" style="--i:3">${p.desc}</p>${p.tags.length?`<div class="tags ov-rv" style="--i:4">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>`:''}</div></div>
@@ -952,25 +957,26 @@ function openProject(i,swap){const p=PROJECTS[i];window.ovOpen=1;dispatchEvent(n
   ovIn.classList.remove('shown');ovIn.style.setProperty('--d',swap?'60ms':'380ms');void ovIn.offsetHeight;
   ov.classList.add('open');ov.setAttribute('aria-hidden','false');lenis&&lenis.stop();document.documentElement.style.overflow='hidden';
   requestAnimationFrame(()=>ovIn.classList.add('shown'));
-  {const os=ovIn.querySelector('.ov-site');if(os){const bw=os.querySelector('.bw'),vw=os.querySelector('.bw-view'),fr=os.querySelector('iframe');const fit=()=>{const k=os.clientWidth/1600;os.style.setProperty('--k',k);os.style.height=(940*k)+'px'};fit();fr.addEventListener('load',()=>{if(fr.getAttribute('src'))setTimeout(()=>{if(fr.getAttribute('src'))vw.classList.add('on')},600)});ovRO&&ovRO.disconnect();ovRO=new ResizeObserver(fit);ovRO.observe(os);
+  {const os=ovIn.querySelector('.ov-site');if(os){const bw=os.querySelector('.bw'),vw=os.querySelector('.bw-view'),fr=os.querySelector('iframe');const fit=()=>{const k=os.clientWidth/1600;os.style.setProperty('--k',k);os.style.height=(940*k)+'px'};fit();fr.addEventListener('load',()=>{if(fr.dataset.on)setTimeout(()=>{if(fr.dataset.on)vw.classList.add('on')},600)});ovRO&&ovRO.disconnect();ovRO=new ResizeObserver(fit);ovRO.observe(os);
    /* the site loads once the sheet has settled, so its loading does not stutter the motion */
-   clearTimeout(ovT);if(window.siteKnown(fr.dataset.src)!==true)os.classList.add('nosite');siteOk(fr.dataset.src).then(ok=>os.classList.toggle('nosite',!ok));ovT=setTimeout(()=>{siteOk(fr.dataset.src).then(ok=>{if(ok&&fr.isConnected&&!fr.getAttribute('src')&&window.ovOpen)fr.src=fr.dataset.src})},swap?800:1500);/* after the slide (1 s), the title roll (till ~1.15 s) and the tile unload (1.2 s), so none of them stutters */os.addEventListener('click',()=>openSiteFull(fr.dataset.src,os.querySelector('.bw-url').textContent));const lb=ovIn.querySelector('.ov-site .bw-live');lb&&lb.addEventListener('click',e=>{e.stopPropagation();openSiteFull(lb.dataset.site,lb.dataset.url)})}}
+   clearTimeout(ovT);if(window.siteKnown(fr.dataset.src)!==true)os.classList.add('nosite');siteOk(fr.dataset.src).then(ok=>os.classList.toggle('nosite',!ok));ovT=setTimeout(()=>{siteOk(fr.dataset.src).then(ok=>{if(ok&&fr.isConnected&&!fr.dataset.on&&window.ovOpen)frameOn(fr,fr.dataset.src)})},swap?800:1500);/* after the slide (1 s), the title roll (till ~1.15 s) and the tile unload (1.2 s), so none of them stutters */os.addEventListener('click',()=>openSiteFull(fr.dataset.src,os.querySelector('.bw-url').textContent));const lb=ovIn.querySelector('.ov-site .bw-live');lb&&lb.addEventListener('click',e=>{e.stopPropagation();openSiteFull(lb.dataset.site,lb.dataset.url)})}}
   ovIO&&ovIO.disconnect();ovIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-in');ovIO.unobserve(e.target)}}),{root:ovSheet,threshold:.12});
   ovIn.querySelectorAll('img.rv').forEach(im=>ovIO.observe(im));
   ovIn.querySelector('.ov-next').addEventListener('click',()=>nextProject(+ovIn.querySelector('.ov-next').dataset.n));
+  window.__route&&window.__route.opened(i,swap);
 }
 /* next project inside the sheet: the page fades up and out, the next one is put in at the top and rises in; no scroll back through the whole page */
 function nextProject(n){if(ovBusy)return;ovBusy=1;clearTimeout(ovT);
   const out=ovIn.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(-28px)'}],{duration:420,easing:'cubic-bezier(.4,0,.2,1)',fill:'forwards'});
-  out.finished.then(()=>{ovIn.querySelectorAll('iframe').forEach(f=>f.removeAttribute('src'));openProject(n,true);out.cancel();
+  out.finished.then(()=>{ovIn.querySelectorAll('iframe').forEach(frameOff);openProject(n,true);out.cancel();
    setTimeout(()=>{ovBusy=0},700)},()=>{ovBusy=0});}
 /* full screen live site, as on the Torque site */
 function openSiteFull(src,url){let f=document.getElementById('sitefs');if(!f){f=document.createElement('div');f.className='sitefs';f.id='sitefs';f.setAttribute('role','dialog');f.setAttribute('aria-modal','true');f.setAttribute('aria-label','Live site, full screen');
   f.innerHTML='<div class="sitefs-bar"><span class="sitefs-url"></span><button class="sitefs-x" type="button">Close</button></div><iframe title="Live site"></iframe>';document.body.appendChild(f);
-  f.querySelector('.sitefs-x').addEventListener('click',()=>{f.classList.remove('open');f.querySelector('iframe').removeAttribute('src');if(!ov.classList.contains('open')){lenis&&lenis.start();document.documentElement.style.overflow=''}});
+  f.querySelector('.sitefs-x').addEventListener('click',()=>{f.classList.remove('open');frameOff(f.querySelector('iframe'));if(!ov.classList.contains('open')){lenis&&lenis.start();document.documentElement.style.overflow=''}});
   addEventListener('keydown',e=>{if(e.key==='Escape'&&f.classList.contains('open'))f.querySelector('.sitefs-x').click()})}
- f.querySelector('.sitefs-url').textContent=url||'';f.querySelector('iframe').src=src;f.classList.add('open');lenis&&lenis.stop();document.documentElement.style.overflow='hidden'}
-function closeProject(){clearTimeout(ovT);clearTimeout(window.__ovKill);window.ovOpen=0;ovBusy=0;ovIn.getAnimations().forEach(a=>a.cancel());ovIn.querySelectorAll('iframe').forEach(f=>f.removeAttribute('src'));dispatchEvent(new Event('ovclose'));ov.classList.remove('open');ov.setAttribute('aria-hidden','true');lenis&&lenis.start();document.documentElement.style.overflow=''}
+ f.querySelector('.sitefs-url').textContent=url||'';frameOn(f.querySelector('iframe'),src);f.classList.add('open');lenis&&lenis.stop();document.documentElement.style.overflow='hidden'}
+function closeProject(){clearTimeout(ovT);clearTimeout(window.__ovKill);window.ovOpen=0;ovBusy=0;ovIn.getAnimations().forEach(a=>a.cancel());ovIn.querySelectorAll('iframe').forEach(frameOff);dispatchEvent(new Event('ovclose'));ov.classList.remove('open');ov.setAttribute('aria-hidden','true');lenis&&lenis.start();document.documentElement.style.overflow='';window.__route&&window.__route.closed()}
 document.getElementById('ovClose').addEventListener('click',closeProject);
 document.getElementById('ovBg').addEventListener('click',closeProject);
 addEventListener('keydown',e=>{const fs=document.getElementById('sitefs');if(e.key==='Escape'&&!(fs&&fs.classList.contains('open')))closeProject()});
@@ -1295,7 +1301,7 @@ function start(){document.getElementById('heroCard').classList.add('is-in');wind
  (function tick(now){const target=gone?100:Math.min(99,((baseOk?.1:0)+.9*(window.__hlp||0))*100);
   shown+=(target-shown)*(gone?.22:.08);if(target-shown<.4&&gone)shown=100;
   const v=Math.round(shown);N.textContent=String(Math.min(99,v)).padStart(2,'0');/* always two digits: the number never grows, so the browser does not keep re-measuring it as the page's main content */B.style.transform='scaleX('+(shown/100)+')';ldr.setAttribute('aria-valuenow',v);
-  if(gone&&shown>=100){ldr.classList.add('out');document.documentElement.classList.remove('ldg');lenis&&lenis.start();start();setTimeout(()=>ldr.remove(),1000);return}
+  if(gone&&shown>=100){ldr.classList.add('out');document.documentElement.classList.remove('ldg');lenis&&lenis.start();start();setTimeout(()=>ldr.remove(),1000);window.__ready=1;dispatchEvent(new Event('pl:ready'));return}
   requestAnimationFrame(tick)})(t0)})();
 </script>
 <style>
@@ -1744,10 +1750,10 @@ raf=requestAnimationFrame(loop);
   if(texCw&&Math.abs(g.cw-texCw)/texCw>.25)drop();texCw=g.cw}
  /* ---- the live site: it is put in the window only when the reel has settled on a project, and only if it is really there; under it lies the still of its first screen ---- */
  setTimeout(()=>{if(window.siteOk)PJ.forEach(q=>{if(q.site)window.siteOk(q.site)})},1200);
- let siteT=0;const siteOff=()=>{clearTimeout(siteT);if(site.getAttribute('src'))site.removeAttribute('src');vw.classList.remove('on')};
+ let siteT=0;const siteOff=()=>{clearTimeout(siteT);frameOff(site);vw.classList.remove('on')};
  const siteOn=i=>{siteOff();const q=PJ[i];if(!q.site){fr.classList.add('nosite');return}
-  if(window.siteKnown)fr.classList.toggle('nosite',window.siteKnown(q.site)!==true);siteT=setTimeout(()=>{(window.siteOk?window.siteOk(q.site):Promise.resolve(true)).then(ok=>{if(cur!==i)return;fr.classList.toggle('nosite',!ok);if(ok&&vis&&was&&!window.ovOpen&&!site.getAttribute('src'))site.src=q.site})},350)};
- site.addEventListener('load',()=>{if(site.getAttribute('src'))setTimeout(()=>{if(site.getAttribute('src'))vw.classList.add('on')},600)});
+  if(window.siteKnown)fr.classList.toggle('nosite',window.siteKnown(q.site)!==true);siteT=setTimeout(()=>{(window.siteOk?window.siteOk(q.site):Promise.resolve(true)).then(ok=>{if(cur!==i)return;fr.classList.toggle('nosite',!ok);if(ok&&vis&&was&&!window.ovOpen&&!site.dataset.on)frameOn(site,q.site)})},350)};
+ site.addEventListener('load',()=>{if(site.dataset.on)setTimeout(()=>{if(site.dataset.on)vw.classList.add('on')},600)});
  function setText(i){if(cur!==null&&cur!==i)dispatchEvent(new CustomEvent('pl:reel',{detail:{dir:Math.sign(i-cur),i}}));cur=i;const q=PJ[i];pv.disabled=i===0;nx.disabled=i===N-1;nb.textContent=pad2(i+1);num.setAttribute('aria-label',(i+1)+' / '+N);roll(nm,q.name);fade(hl,()=>{hl.textContent=q.hl});url.textContent=q.siteUrl||'';site.title=q.name+' live site';
   rb.forEach((b,j)=>b.classList.toggle('on',j===i));fr.classList.remove('nosite');ps.src=IMT(q.id,'poster');if(was)siteOn(i)}
  const PX=.3,PY=.06;
@@ -1953,6 +1959,41 @@ document.addEventListener('click',e=>{if(!e.detail)return;const b=e.target.close
  addEventListener('pl:pour',()=>play('focus',.7,{rate:rnd(.95,1.05),gap:.1}));
  addEventListener('pl:open',()=>play('open',.5,{gap:.6}));
  document.addEventListener('pointerover',e=>{if(e.pointerType&&e.pointerType!=='mouse')return;const t=e.target.closest&&e.target.closest('a,button,[role=button]');if(!t||t===btn||(e.relatedTarget&&t.contains(e.relatedTarget)))return;play('tick',.2,{rate:rnd(.92,1.12),gap:.07})},true);
+})();
+
+/* ===== ADDRESSES. Every section and every project has its own link, so a place on the site can be shared.
+   The address follows the scroll (it is replaced, not added, so Back does not walk through the sections); an open project adds one step, so Back closes it;
+   a link opens the page where it points: a section is scrolled to, a project is opened over the work section with the reel standing on it ===== */
+(()=>{if(typeof PROJECTS==='undefined')return;
+ const SLUG={obsk:'obskura',umb:'umbra',arch:'obra-gris',lamp:'lamplight',dal:'dalfilo',chase:'causa-prima',spik:'spiko',opply:'opply',bumb:'bumbba',lcky:'lcky-group',yaba:'yaba',clov:'cloverstone'};
+ const slug=i=>SLUG[PROJECTS[i].id]||PROJECTS[i].id,pjOf=h=>PROJECTS.findIndex((p,i)=>slug(i)===h);
+ const SEC={about:'#aboutSec',work:'#work',resume:'#cv',cv:'#cv',contact:'#contact'};
+ const T0=document.title,base=()=>location.pathname+location.search,LN=()=>typeof lenis!=='undefined'&&lenis?lenis:null;
+ const put=(h,push)=>{const u=base()+(h?'#'+h:'');if(!push&&u===base()+location.hash)return;try{if(push)history.pushState({pj:1},'',u);else history.replaceState(history.state,'',u)}catch(e){}};
+ const toSec=(k,now)=>{const sel=SEC[k];if(!sel)return;const l=LN();
+  if(k==='contact'){const y=document.documentElement.scrollHeight-innerHeight;if(l)l.scrollTo(y,{immediate:now,force:true,duration:1.8});else scrollTo({top:y,behavior:now?'auto':'smooth'});return}
+  const el=document.querySelector(sel);if(!el)return;const off=k==='work'?0:-90;
+  if(l)l.scrollTo(el,{offset:off,immediate:now,force:true,duration:1.6});else scrollTo({top:el.getBoundingClientRect().top+scrollY+off,behavior:now?'auto':'smooth'})};
+ /* where the page is: the last section whose top has passed the middle of the screen; the first screen has no name */
+ const here=()=>{const H=innerHeight*.5,past=s=>{const e=document.querySelector(s);return !!e&&e.getBoundingClientRect().top<=H};let h='';
+  if(past('#aboutSec'))h='about';if(past('#work'))h='work';if(past('#cv'))h='resume';if(past('.foot-sp'))h='contact';return h};
+ let cur=-1,pushed=false,quiet=false,skip=false,spy=false,tk=0;
+ window.__route={
+  opened(i,swap){cur=i;document.title=PROJECTS[i].name+' — '+T0;if(quiet)return;if(!swap&&!pushed){put(slug(i),true);pushed=true}else put(slug(i),false)},
+  closed(){if(cur<0)return;cur=-1;document.title=T0;if(quiet)return;if(pushed){pushed=false;skip=true;history.back()}else put(here(),false)}};
+ const onScroll=()=>{if(!spy||tk)return;tk=requestAnimationFrame(()=>{tk=0;if(!window.ovOpen&&cur<0)put(here(),false)})};
+ addEventListener('scroll',onScroll,{passive:true});{const l=LN();if(l)l.on('scroll',onScroll)}
+ const go=(h,now)=>{const i=pjOf(h);
+  if(i>=0){if(window.ovOpen){if(cur!==i){quiet=true;openProject(i,true);quiet=false}return}
+   toSec('work',true);const S=window.__reelS;if(S){S.t=S.p=i;S.v=0}quiet=true;openProject(i);quiet=false;return}
+  if(window.ovOpen){quiet=true;closeProject();quiet=false;return}
+  toSec(h,now)};
+ /* Back, Forward, or a place typed into the address */
+ addEventListener('popstate',()=>{pushed=!!(history.state&&history.state.pj);if(skip){skip=false;return}go(decodeURIComponent(location.hash.slice(1)).toLowerCase(),false)});
+ const start=()=>{const h=decodeURIComponent((window.__H||'').slice(1)).toLowerCase(),i=h?pjOf(h):-1;
+  if(i>=0||SEC[h]){go(h,true);put(i>=0?slug(i):(h==='cv'?'resume':h),false)}
+  setTimeout(()=>{spy=true;onScroll()},i>=0||SEC[h]?500:0)};
+ if(window.__ready)start();else addEventListener('pl:ready',start,{once:true});
 })();
 </script>
 </body>
