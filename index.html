@@ -1972,7 +1972,8 @@ document.addEventListener('click',e=>{if(!e.detail)return;const b=e.target.close
  const put=(h,push)=>{const u=base()+(h?'#'+h:'');if(!push&&u===base()+location.hash)return;try{if(push)history.pushState({pj:1},'',u);else history.replaceState(history.state,'',u)}catch(e){}};
  const toSec=(k,now)=>{const sel=SEC[k];if(!sel)return;const l=LN();
   if(k==='contact'){const y=document.documentElement.scrollHeight-innerHeight;if(l)l.scrollTo(y,{immediate:now,force:true,duration:1.8});else scrollTo({top:y,behavior:now?'auto':'smooth'});return}
-  const el=document.querySelector(sel);if(!el)return;const off=k==='work'?0:-90;
+  /* a link lands on the section as it is composed: its top at the top of the screen (pinned scenes start exactly there) */
+  const el=document.querySelector(sel);if(!el)return;const off=0;
   if(l)l.scrollTo(el,{offset:off,immediate:now,force:true,duration:1.6});else scrollTo({top:el.getBoundingClientRect().top+scrollY+off,behavior:now?'auto':'smooth'})};
  /* where the page is: the last section whose top has passed the middle of the screen; the first screen has no name */
  const here=()=>{const H=innerHeight*.5,past=s=>{const e=document.querySelector(s);return !!e&&e.getBoundingClientRect().top<=H};let h='';
